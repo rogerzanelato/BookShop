@@ -24,3 +24,6 @@ Make sure all dependencies are installed. After it, execute do the `migrations`:
 To execute the project, open **Visual Studio**, just select on top bar at **Startup Project** the item `BookShop.Application` and click on the Green button on the right side.
 
 **The first Build is gonna be slow because it'll install the NPM dependencies for the React Interface.**
+
+## API Samples
+Postman Collection: https://www.getpostman.com/collections/cd7b7cc935de12c5d40b
