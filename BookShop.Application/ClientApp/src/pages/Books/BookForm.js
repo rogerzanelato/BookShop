@@ -49,6 +49,14 @@ export default class BookForm extends Component {
   isFormValid = () => {
     let errors = null;
 
+    const notEmpty = ["title", "pages", "stock"];
+    notEmpty.forEach(val => {
+      if (!this.state.form[val]) {
+        errors = errors || {};
+        errors[val] = errors[val] || [];
+        errors[val].push("This field is required");
+      }
+    });
     if (!this.state.form.title) {
       errors = errors || {};
       errors.title = [];
@@ -99,6 +107,11 @@ export default class BookForm extends Component {
     }
   };
 
+  resetPage = () => {
+    this.cleanForm();
+    this.props.history.push("/book/form");
+  };
+
   cleanForm = () => {
     this.setState({
       error: null,
@@ -128,8 +141,15 @@ export default class BookForm extends Component {
   renderErrorMessage = () => {
     const final = [];
     Object.entries(this.state.error).forEach(([key, value]) => {
-      final.push(<p>Field: {key}</p>);
-      value.forEach(message => final.push(<p>{message}</p>));
+      final.push(<p className="text-capitalize">{key}: </p>);
+
+      final.push(
+        <ul>
+          {value.map(message => (
+            <li>{message}</li>
+          ))}
+        </ul>
+      );
     });
 
     return <UncontrolledAlert color="danger">{final}</UncontrolledAlert>;
@@ -253,7 +273,10 @@ export default class BookForm extends Component {
             </Col>
           </FormGroup>
 
-          <Button onClick={this.submitForm}>Submit</Button>
+          <Button onClick={this.resetPage}>New</Button>
+          <Button onClick={this.submitForm} color="primary" className="ml-1">
+            Submit
+          </Button>
         </Form>
       </div>
     );
