@@ -21,8 +21,8 @@ namespace BookShop.Domain.Entities
 
         public string EditionYear { get; set; }
 
-        public IList<BookAuthor> BookAuthors { get; set; }
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 
-        public IList<BookGenre> BookGenres { get; set; }
+        public virtual ICollection<BookGenre> BookGenres { get; set; }
     }
 }

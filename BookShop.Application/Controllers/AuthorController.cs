@@ -13,27 +13,26 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookShop.Application.Controllers
 {
     [Produces("application/json")]
-    [Route("api/book")]
+    [Route("api/author")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class AuthorController : ControllerBase
     {
-        private IService<Book> _service;
+        private IService<Author> _service;
 
-        public BookController(IService<Book> service)
+        public AuthorController(IService<Author> service)
         {
             _service = service;
-            // var bookRepository = new BookRepository();
-            // _service = new BookService(bookRepository);
+            // _service = new BaseService<Author>(new BaseRepository<Author>());
         }
 
         
-        // POST api/book
+        // POST api/author
         [HttpPost]
-        public IActionResult Post([FromBody] Book item)
+        public IActionResult Post([FromBody] Author item)
         {
             try
             {
-                _service.Post<BookValidator>(item);
+                _service.Post<AuthorValidator>(item);
 
                 return new ObjectResult(item.Id);
             }
@@ -47,14 +46,14 @@ namespace BookShop.Application.Controllers
             }
         }
 
-        // POST api/book/{id}
+        // POST api/author/{id}
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Book item, int id)
+        public IActionResult Put([FromBody] Author item, int id)
         {
             try
             {
                 item.Id = id;
-                _service.Put<BookValidator>(item);
+                _service.Put<AuthorValidator>(item);
 
                 return new ObjectResult(item);
             }
@@ -68,7 +67,7 @@ namespace BookShop.Application.Controllers
             }
         }
 
-        // DELETE api/book/{id}
+        // DELETE api/author/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -88,7 +87,7 @@ namespace BookShop.Application.Controllers
             }
         }
 
-        // GET api/book
+        // GET api/author
         [HttpGet]
         public IActionResult Get()
         {
@@ -102,7 +101,7 @@ namespace BookShop.Application.Controllers
             }
         }
 
-        // GET api/book/{id}
+        // GET api/author/{id}
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

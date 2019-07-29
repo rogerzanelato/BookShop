@@ -9,6 +9,11 @@ namespace BookShop.Domain.Repository
 {
     public class BookRepository : BaseRepository<Book>, IBookRepository
     {
+        public BookRepository(DbContext context) : base(context)
+        {
+
+        }
+
         public IList<Book> SelectWithRelationship()
         {
             return _context.Set<Book>()

@@ -18,7 +18,7 @@ namespace BookShop.Service.Validator
             RuleFor(c => c.Title)
                 .NotEmpty().WithMessage("Is necessary to inform the book's title")
                 .NotNull().WithMessage("Is necessary to inform the book's title")
-                .MaximumLength(80).WithMessage("Book's title must be a maximum of 80 characters");
+                .MaximumLength(255).WithMessage("Book's title must be a maximum of 80 characters");
 
             RuleFor(c => c.Stock)
                 .NotNull().WithMessage("Is required to inform the book's stock quantity");

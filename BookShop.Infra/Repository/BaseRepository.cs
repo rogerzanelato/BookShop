@@ -9,7 +9,12 @@ namespace BookShop.Domain.Repository
 {
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
-        protected readonly DbContext _context = new DatabaseContext();
+        protected DbContext _context;
+
+        public BaseRepository(DbContext context)
+        {
+            _context = context;
+        }
 
         public virtual void Insert(T obj)
         {

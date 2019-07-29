@@ -14,7 +14,7 @@ namespace BookShop.Infra.Mapping
 
             builder.Property(c => c.Title)
                 .IsRequired()
-                .HasMaxLength(80)
+                .HasMaxLength(255)
                 .HasColumnName("title");
 
             builder.Property(c => c.Description)

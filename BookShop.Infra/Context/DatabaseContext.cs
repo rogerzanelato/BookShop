@@ -15,11 +15,8 @@ namespace BookShop.Infra.Context
         public DbSet<BookGenre> BookGenres { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options): base(options)
         {
-            if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=bookshop;Integrated Security=true;MultipleActiveResultSets=true");
-                // optionsBuilder.UseMySql("server=localhost;port=3306;database=default-db;uid=admin;password=1234");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

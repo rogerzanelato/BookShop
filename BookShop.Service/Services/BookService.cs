@@ -22,13 +22,13 @@ namespace BookShop.Service.Services
         
         public Book Get(int id)
         {
-            if (id != 0)
+            if (id == 0)
                 throw new ArgumentException("The id can't be zero");
 
-            return _repository.SelectWithRelationship(id);
+            return _repository.Select(id);
         }
 
-        public IList<Book> Get() => _repository.SelectWithRelationship();
+        public IList<Book> Get() => _repository.Select();
 
         public Book Post<V>(Book obj) where V : AbstractValidator<Book>
         {
